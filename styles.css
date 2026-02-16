@@ -1,110 +1,112 @@
+/* --- BASIS DESIGN (STUTTGART STYLE) --- */
 :root {
-    --primary: #004e9e;
-    --primary-dark: #003366;
-    --secondary: #ffcc00;
-    --text-dark: #333333;
-    --text-light: #666666;
-    --bg-light: #f9f9f9;
-    --white: #ffffff;
-    --border: #dddddd;
-    --success: #28a745;
+    --primary: #FFD700; /* Stuttgart Gelb */
+    --text-dark: #1A1A1A; /* Schwarz */
+    --text-light: #F5F5F5;
+    --bg-page: #ffffff;
+    --bg-card: #f9f9f9;
+    --border-radius: 12px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    /* BWT Variables Helper */
+    --primary-blue: #0B7BB3;
+    --primary-purple: #6B2E7F;
+    --accent-yellow: #FFD93D;
+    --bg-white: #FFFFFF;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-page); color: var(--text-dark); line-height: 1.6; }
 
 /* HEADER */
-.header { background: var(--white); padding: 1rem 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-.logo-container { display: flex; flex-direction: column; }
-.logo-main { font-size: 1.2rem; font-weight: bold; color: var(--primary); text-transform: uppercase; }
-.logo-sub { font-size: 0.9rem; color: var(--text-light); }
+.header { background: var(--text-dark); color: var(--primary); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.logo-main { font-weight: 800; font-size: 1.5rem; display: block; letter-spacing: 0.5px; }
+.logo-sub { font-size: 0.9rem; color: #ccc; display: block; }
 
 /* HERO */
-.hero { padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; }
-.hero-title { font-size: 3rem; margin-bottom: 2rem; color: var(--text-dark); }
-.highlight { color: var(--primary); }
+.hero { padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+.hero-title { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; font-weight: 800; }
+.highlight { background: linear-gradient(120deg, var(--primary) 0%, var(--primary) 100%); background-repeat: no-repeat; background-size: 100% 0.4em; background-position: 0 88%; color: inherit; }
+.hero-subtitle { font-size: 1.3rem; color: #555; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-/* CARDS & GENERAL UI */
-.cards-container { display: grid; gap: 2rem; }
-.option-card { background: var(--white); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
-.card-header { background: var(--primary); color: var(--white); padding: 1.5rem; display: flex; align-items: center; gap: 1rem; }
-.icon-wrapper { font-size: 1.5rem; background: rgba(255,255,255,0.2); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-.card-content { padding: 1.5rem; }
+/* KARTEN CONTAINER - WIEDER BREITER! */
+.cards-container { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2rem; 
+    max-width: 1200px; /* WICHTIG: Zurück auf 1200px oder 100% */
+    width: 100%;
+    margin: 0 auto; 
+}
 
-/* WIZARD (REPO 2) */
-.split-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-.section-title { font-weight: bold; margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
-.section-number { background: var(--secondary); color: var(--text-dark); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; }
-.select-wrapper { margin-bottom: 1rem; }
-.select-label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; background: white; }
+.option-card { background: var(--bg-card); border-radius: var(--border-radius); padding: 2.5rem; box-shadow: var(--shadow); border-left: 6px solid var(--primary); text-align: left; transition: transform 0.2s; }
+.option-card:hover { transform: translateY(-3px); }
+.card-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+.icon-wrapper { font-size: 2.5rem; background: #fff; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.card-header h2 { font-size: 1.8rem; margin: 0; }
 
-.visualization-area { display: flex; align-items: center; justify-content: center; margin: 2rem 0; gap: 1rem; }
-.endpoint-circle { width: 50px; height: 50px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #999; border: 2px solid #ddd; transition: all 0.3s; }
-.endpoint-circle.active { background: var(--success); color: white; border-color: var(--success); }
-.connection-line { flex-grow: 1; height: 2px; background: #ddd; position: relative; max-width: 200px; }
-.connection-arrow { position: absolute; right: 0; top: -4px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid #ddd; }
+/* --- BWT DROPDOWN STYLES (Aus BWT-Index extrahiert & angepasst) --- */
+.split-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.split-section { padding: 1rem; }
+.section-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.section-number { background: var(--text-dark); color: var(--primary); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.select-wrapper { margin-bottom: 1.5rem; }
+.select-label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; color: #666; }
+select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; background: white; cursor: pointer; }
+select:focus { border-color: var(--primary); outline: none; }
 
-.action-buttons { display: flex; gap: 1rem; margin-bottom: 1rem; }
-.btn-primary, .btn-secondary { padding: 12px 24px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.2s; flex: 1; }
-.btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { background: var(--primary-dark); }
-.btn-secondary { background: #e0e0e0; color: var(--text-dark); }
-.btn-secondary:hover { background: #d0d0d0; }
+/* Visualisierung (Start -> Ziel Pfeil) */
+.visualization-area { background: white; padding: 1.5rem; border-radius: 8px; border: 1px solid #eee; margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; }
+.endpoint-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; background: #eee; font-size: 1.2rem; }
+.endpoint-circle.active { background: var(--primary); color: black; }
+.connection-line { flex: 1; height: 3px; background: #ddd; margin: 0 1rem; position: relative; }
+.connection-arrow { position: absolute; right: 0; top: -5px; border-left: 10px solid #ddd; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
 
-.path-card { background: #fff; border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 1.5rem; margin-top: 1rem; animation: fadeIn 0.5s ease; }
-.path-card.recommended { border-left-color: var(--success); background: #fdfdfd; }
-.path-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
-.duration-badge { background: #eee; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; color: #555; }
+/* Ergebnis Liste */
+.results-container { margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 2rem; }
+.path-card { background: white; border: 1px solid #ddd; border-left: 5px solid var(--text-dark); padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; }
+.path-card.recommended { border-left-color: var(--primary); background: #fffdf5; }
+.path-title { font-weight: bold; font-size: 1.2rem; margin-bottom: 0.5rem; }
 .path-steps { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 1rem; }
-.step { background: #f0f4f8; color: var(--primary-dark); padding: 5px 10px; border-radius: 4px; font-weight: 500; }
+.step { background: #eee; padding: 4px 10px; border-radius: 4px; font-size: 0.9rem; }
 .arrow { color: #999; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.duration-badge { float: right; background: #eee; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; }
 
-/* PLAKAT (REPO 3 - NEW SECTION) */
-.plakat-container { display: flex; justify-content: space-between; align-items: stretch; overflow-x: auto; padding: 1rem 0; gap: 10px; }
-.plakat-column { display: flex; flex-direction: column; gap: 1rem; min-width: 120px; flex: 1; }
-.plakat-col-title { text-align: center; font-size: 0.9rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
-.plakat-card { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 1rem 0.5rem; text-align: center; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: relative; z-index: 2; }
-.plakat-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-.start-node { border-left: 4px solid var(--primary); }
-.option-node { border-left: 4px solid var(--secondary); }
-.goal-node { border-left: 4px solid var(--success); }
-.plakat-card.active-source { background: var(--primary); color: white; border-color: var(--primary); }
-.plakat-card.active-target { background: #e6f7ff; border-color: var(--primary); font-weight: bold; }
-.plakat-arrows { display: flex; align-items: center; justify-content: center; width: 30px; }
-.plakat-details-box { margin-top: 1.5rem; padding: 1rem; background: #f4f4f4; border-radius: 8px; border-left: 4px solid #666; animation: fadeIn 0.3s; }
+/* Buttons */
+.btn-primary { background: var(--text-dark); color: var(--primary); border: none; padding: 1rem 2rem; font-weight: bold; cursor: pointer; border-radius: 8px; width: 100%; font-size: 1.1rem; transition: transform 0.1s; }
+.btn-primary:hover { transform: scale(1.02); }
+.btn-secondary { background: white; border: 2px solid #ddd; padding: 0.8rem; width: 100%; border-radius: 8px; cursor: pointer; margin-top: 0.5rem; }
 
-/* DOWNLOADS & GLOSSAR */
-.download-group h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-light); border-bottom: 1px solid #eee; padding-bottom: 5px; }
-.download-item { display: block; padding: 0.8rem; text-decoration: none; color: var(--primary); border: 1px solid transparent; border-radius: 4px; transition: all 0.2s; }
-.download-item:hover { background: #f0f8ff; border-color: #cce5ff; }
+/* DOWNLOADS */
+.download-item { display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid #ddd; transition: all 0.2s; margin-bottom: 0.8rem; }
+.download-item:hover { border-color: var(--primary); background: #fffdf5; }
 
-.search-input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 6px; }
-.accordion-item { background: white; margin-bottom: 0.5rem; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; }
-.accordion-header { padding: 1rem; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; background: #fff; }
-.accordion-header:hover { background-color: #f9f9f9; }
-.accordion-content { padding: 0 1rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fafafa; }
-.accordion-item.active .accordion-content { max-height: 500px; padding: 1.5rem; border-top: 1px solid var(--border); }
+/* SMALL CARDS GRID (Breiter!) */
+.info-section-title { margin-top: 4rem; margin-bottom: 2rem; font-size: 2rem; text-align: center; border-top: 1px solid #eee; padding-top: 2rem; }
+.small-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; width: 100%; } /* Gap erhöht */
+.card-small { background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid var(--text-dark); display: flex; flex-direction: column; height: 100%; }
+.card-header-small { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+.icon-small { font-size: 2rem; }
+.card-header-small h3 { font-size: 1.3rem; margin: 0; font-weight: 700; }
+.download-link-small { display: block; padding: 1rem; background: #f4f4f4; color: var(--text-dark); text-decoration: none; border-radius: 4px; margin-bottom: 0.5rem; font-size: 1rem; transition: background 0.2s; border-left: 3px solid transparent; }
+.download-link-small:hover { background: #e9e9e9; border-left-color: var(--primary); }
 
-/* QUIZ */
-.progress-bar { background: #eee; height: 8px; border-radius: 4px; margin-bottom: 1rem; overflow: hidden; }
-#quiz-progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
+/* GLOSSAR & QUIZ */
+.accordion-item { background: white; margin-bottom: 0.5rem; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; }
+.accordion-header { padding: 1rem; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; background: #fff; }
+.accordion-header:hover { background-color: #f0f0f0; }
+.accordion-content { padding: 0 1rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fafafa; border-top: 1px solid transparent; }
+.accordion-item.active .accordion-content { max-height: 500px; padding: 1.5rem; border-top: 1px solid #ddd; }
+
+/* Quiz Styles aus BWT übernommen */
 .quiz-options { display: grid; gap: 10px; margin-top: 1rem; }
-.quiz-option { padding: 15px; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; background: white; transition: all 0.2s; }
-.quiz-option:hover { border-color: var(--primary); background: #f0f8ff; }
-.beruf-card { background: white; padding: 1.5rem; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 8px; }
+.quiz-option { padding: 15px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: white; }
+.quiz-option:hover { background: #f9f9f9; border-color: #ccc; }
+.quiz-option.selected { border-color: var(--primary); background: #fff9e6; font-weight: bold; }
+.beruf-card { background: white; padding: 1.5rem; border: 1px solid #ddd; border-left: 4px solid var(--text-dark); margin-bottom: 1rem; border-radius: 8px; }
 
-/* SMALL CARDS GRID */
-.small-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-.card-small { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-.card-header-small { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-.icon-small { font-size: 1.2rem; }
-.download-link-small { display: block; padding: 0.5rem; background: #f4f4f4; color: var(--text-dark); text-decoration: none; border-radius: 4px; font-size: 0.9rem; transition: background 0.2s; text-align: center; }
-.download-link-small:hover { background: #e9e9e9; color: var(--primary); }
-
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .split-container { grid-template-columns: 1fr; }
-    .hero-title { font-size: 2rem; }
-    .plakat-container { flex-wrap: nowrap; overflow-x: scroll; padding-bottom: 1rem; }
+    .small-cards-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.5rem; }
 }
